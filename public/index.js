@@ -4,6 +4,10 @@
     You may use jQuery or stick with vanilla JavaScript. 
 */
 
+const errorMessage = document.querySelector("#error-message");
+// Initially hide error message at the start
+errorMessage.style.display = "none";
+
 const submitBtn = document.querySelector("#submitBtn");
 
 submitBtn.addEventListener("click", function (e) {
