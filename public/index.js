@@ -72,6 +72,13 @@ submitBtn.addEventListener("click", function (e) {
 
 });
 
-// TODO: Write the code for the `Toggle Mark as Done` functionality
+// TODO: Write the code for the `Toggle Mark as Done` functionality (FEATURE 2)
+const itemsContainer = document.querySelector("#itemsContainer");
+itemsContainer.addEventListener("change", function (e) {
+  if (e.target.classList.contains("todo-markBtn")) {
+    const taskNameSpan = e.target.parentElement.querySelector(".todo-task");
+    taskNameSpan.classList.toggle("done"); // Mark as done
+  }
+});
 
 // TODO, BONUS: Write the code for the `Sort Task by ..` functionality
