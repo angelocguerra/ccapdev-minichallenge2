@@ -82,3 +82,37 @@ itemsContainer.addEventListener("change", function (e) {
 });
 
 // TODO, BONUS: Write the code for the `Sort Task by ..` functionality
+const sortTodoSelect = document.querySelector("#sortTodo");
+sortTodoSelect.addEventListener("change", function () {
+  const selectedOption = sortTodoSelect.value;
+
+  // Get all task items
+  const taskItems = Array.from(document.querySelectorAll(".todo-item"));
+
+  if (selectedOption === "task") { // Sort task items by task name
+    taskItems.sort((a, b) => {
+      const taskNameA = a.querySelector(".todo-task").textContent.toLowerCase();
+      const taskNameB = b.querySelector(".todo-task").textContent.toLowerCase();
+      return taskNameA.localeCompare(taskNameB);
+    });
+  } else if (selectedOption === "priority") { // Sort task items by priority
+    taskItems.sort((a, b) => {
+      const priorityA = a.querySelector(".todo-prio").classList[1];
+      const priorityB = b.querySelector(".todo-prio").classList[1];
+      const priorityOrder = { high: 1, medium: 2, low: 3 };
+      return priorityOrder[priorityA] - priorityOrder[priorityB];
+    });
+  } else if (selectedOption === "status") { // Sort task items by status
+    taskItems.sort((a, b) => {
+      const isDoneA = a.querySelector(".todo-markBtn").checked;
+      const isDoneB = b.querySelector(".todo-markBtn").checked;
+      return isDoneA - isDoneB;
+    });
+  }
+
+  // Reorder task items based on sorted order
+  const itemsContainer = document.querySelector("#itemsContainer");
+  taskItems.forEach((taskItem) => {
+    itemsContainer.appendChild(taskItem);
+  });
+});
